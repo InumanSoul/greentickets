@@ -1,0 +1,19 @@
+@include block('event') {
+    background: $white;
+
+    @include element('title') {
+        margin-bottom: 2rem;
+        font-size: 2.4rem;
+    }
+
+    @include element('actions'){
+        border-bottom: 1px solid $gray-400;
+    }
+
+    @include element('photo') {
+        height: 420px;
+        background-color: $gray-900;
+        background-size: cover !important;
+        background-position: center !important;
+    }
+}

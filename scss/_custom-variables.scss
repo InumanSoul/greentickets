@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css?family=Muli:400,700,800|Roboto:400,700&display=swap');
+
+// Variables Fuentes
+$font-family-sans-serif: 'Roboto', sans-serif;
+$font-family-base: $font-family-sans-serif;
+$headings-font-family: 'Muli', sans-serif;
+$headings-font-weight: 800;
+$enable-responsive-font-sizes: true;
+
+// Master Colors
+$primary: #43B55D;
+$info: #0497F2;
+$warning: rgb(241, 166, 5);
+$danger: #F24C3D;
+$black: #171515;
+
+// link colors
+$link-color: $primary;
+
+// Gray colors
+$white: #FFF;
+$gray-100: #ECEEEF;
+$gray-200: #DEE1E3;
+$gray-400: #BFC5C9;
+$gray-900: #374047;
+
+// Card border color
+$card-border-color: $gray-400;
+
+// Button Colors
+$colors: ();
+// stylelint-disable-next-line scss/dollar-variable-default
+$colors: map-merge(
+  (
+    "blue":       $primary,
+    "indigo":     $indigo,
+    "purple":     $purple,
+    "pink":       $pink,
+    "red":        $danger,
+    "orange":     $orange,
+    "yellow":     $warning,
+    "green":      $secondary,
+    "teal":       $teal,
+    "cyan":       $info,
+    "white":      $white,
+    "gray":       $gray-500,
+    "gray-dark":  $gray-700
+  ),
+  $colors
+);
+
+$theme-colors: ();
+// stylelint-disable-next-line scss/dollar-variable-default
+$theme-colors: map-merge(
+  (
+    "primary":    $primary,
+    "secondary":  $secondary,
+    "success":    $green,
+    "info":       $info,
+    "warning":    $warning,
+    "danger":     $danger,
+    "light":      $white,
+    "dark":       $gray-700
+  ),
+  $theme-colors
+);
+
+// Button Mixin
+@mixin button-variant($background, $border, $hover-background: darken($background, 7.5%), $hover-border: darken($border, 10%), $active-background: darken($background, 10%), $active-border: darken($border, 12.5%)) {
+	color: color-yiq($background);
+	@include gradient-bg($background);
+	border-color: $border;
+	@include box-shadow($btn-box-shadow);
+  
+	@include hover {
+	  color: color-yiq($hover-background);
+	  @include gradient-bg($hover-background);
+	  border-color: $hover-border;
+	}
+  
+	&:focus,
+	&.focus {
+	  // Avoid using mixin so we can pass custom focus shadow properly
+	  @if $enable-shadows {
+		box-shadow: $btn-box-shadow, 0 0 0 $btn-focus-width rgba(mix(color-yiq($background), $border, 15%), .5);
+	  } @else {
+		box-shadow: 0 0 0 $btn-focus-width rgba(mix(color-yiq($background), $border, 15%), .5);
+	  }
+	}
+  
+	// Disabled comes first so active can properly restyle
+	&.disabled,
+	&:disabled {
+	  color: color-yiq($background);
+	  background-color: $background;
+	  border-color: $border;
+	  // Remove CSS gradients if they're enabled
+	  @if $enable-gradients {
+		background-image: none;
+	  }
+	}
+  
+	&:not(:disabled):not(.disabled):active,
+	&:not(:disabled):not(.disabled).active,
+	.show > &.dropdown-toggle {
+	  color: color-yiq($active-background);
+	  background-color: $active-background;
+	  @if $enable-gradients {
+		background-image: none; // Remove the gradient for the pressed/active state
+	  }
+	  border-color: $active-border;
+  
+	  &:focus {
+		// Avoid using mixin so we can pass custom focus shadow properly
+		@if $enable-shadows and $btn-active-box-shadow != none {
+		  box-shadow: $btn-active-box-shadow, 0 0 0 $btn-focus-width rgba(mix(color-yiq($background), $border, 15%), .5);
+		} @else {
+		  box-shadow: 0 0 0 $btn-focus-width rgba(mix(color-yiq($background), $border, 15%), .5);
+		}
+	  }
+	}
+  }
+
+  // White links against a dark background
+$navbar-dark-color: $white;

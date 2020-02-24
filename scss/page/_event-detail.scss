@@ -1,0 +1,21 @@
+.photo-blur-container {
+    height: 400px;
+    width: 100%;
+    background-color: $gray-200;
+    background-position: center !important;
+    background-size: cover !important;
+    overflow: hidden;
+    position: relative;
+    z-index: -1;
+}
+
+.photo-blur{
+    filter: blur(40px);
+    width: 140%;
+    z-index: -10;
+    position: absolute;
+}
+
+.event-container{
+    margin-top: -290px;
+}

@@ -1,0 +1,29 @@
+// Custom font face for Continental Bank
+// Designed by Anderson Fariña
+
+@font-face {
+  font-family: 'contisansbold';
+  src: url('../fonts/contisans-bold-webfont.woff2') format('woff2'),
+    url('../fonts/contisans-bold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+@font-face {
+  font-family: 'contisanslight';
+  src: url('../fonts/contisans-light-webfont.woff2') format('woff2'),
+    url('../fonts/contisans-light-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+@font-face {
+  font-family: 'contisansregular';
+  src: url('../fonts/contisans-webfont.woff2') format('woff2'),
+    url('../fonts/contisans-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}

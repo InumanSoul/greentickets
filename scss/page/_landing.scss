@@ -1,0 +1,57 @@
+.hero{
+    background: url('../img/arboles.png'), linear-gradient(to left,  rgba(67, 181, 93, .8),  rgba(67, 181, 93, .8)), url('../img/concert.jpg');
+    background-size: auto, cover, cover;
+    background-position: bottom, center, center;
+    background-repeat: repeat-x, no-repeat, no-repeat;
+    padding: 25vh 0;
+    color: #fff;
+    margin-top: -90px;
+}
+
+.hero-input {
+    width: 100%;
+    border: 1px solid white;
+    border-radius: 50px;
+    padding: 1rem 1.5rem;
+}
+
+@include block('event-category'){
+    height: 240px;
+    background-color: $gray-200;
+    border-radius: 5px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover !important;
+
+    h5{
+        text-transform: uppercase;
+        margin-bottom: 0;
+        color: #fff;
+    }
+
+    @include modifier('concert'){
+        background: linear-gradient(to left, rgba(133,91,193, .85), rgba(133,91,193, .85)), url('../img/concert.jpg');
+    }
+
+    @include modifier('sport') {
+        background: linear-gradient(to left, rgba(67, 181, 93, .85), rgba(67, 181, 93, .85)), url('../img/sports.jpg');
+    }
+
+    @include modifier('theater') {
+        background: linear-gradient(to left, rgba(90, 100, 191, .85), rgba(90, 100, 191, .85)), url('../img/theater.jpg');
+    }
+
+    @include modifier('party'){
+        background: linear-gradient(to left, rgba(64, 217, 204, .85), rgba(64, 217, 204, .85)), url('../img/party.jpg');
+    }
+
+    @include modifier('community') {
+        background: linear-gradient(to left, rgba(211, 109, 36, .85), rgba(211, 109, 36, .85)), url('../img/communities.jpg');
+    }
+
+    @include modifier('class') {
+        background: linear-gradient(to left, rgba(221, 87, 165, .85), rgba(221, 87, 165, .85)), url('../img/theater.jpg');
+    }
+}

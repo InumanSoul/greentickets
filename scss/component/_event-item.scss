@@ -1,0 +1,18 @@
+@include block('event-item') {
+    box-shadow: none;
+    transition: all .3s ease;
+    margin-bottom: 2rem;
+    border-radius: 5px;
+    color: inherit;
+    text-decoration: none;
+
+    &:hover{
+        box-shadow: 0 4px 12px rgba(0,0,0, .15);
+    }
+
+    @include element('photo'){
+        height: 160px;
+        border-radius: 5px 5px 0 0;
+        background-color: $gray-400;
+    }
+}

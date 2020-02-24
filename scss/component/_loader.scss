@@ -1,0 +1,56 @@
+@include block('loader'){
+    animation: opacity infinite 1s ease-in-out;
+
+    @include element('title') {
+        width: 40%;
+        height: 25px;
+        border-radius: 90px;
+        background: $gray-400;
+    }
+
+    @include element('desc') {
+        width: 90%;
+        height: 16px;
+        border-radius: 90px;
+        background: $gray-400;
+    }
+
+    @include element('sub') {
+        width: 65%;
+        height: 16px;
+        background: $gray-400;
+        border-radius: 80px;
+    }
+
+    @include element('photo') {
+        width: 60px;
+        height: 60px;
+        background: $gray-400;
+        background-size: cover !important;
+        background-repeat: no-repeat !important;
+
+        @include modifier('xs') {
+            width: 35px;
+            height: 35px;
+        }
+
+        @include modifier('xl') {
+            width: 250px;
+            height: 250px;
+        }
+    }
+}
+
+@keyframes opacity {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: .5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

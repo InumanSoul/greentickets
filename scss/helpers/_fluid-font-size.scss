@@ -1,0 +1,60 @@
+// Fluid Font Size v1.1.0
+// https://github.com/philippkuehn/fluid-font-size
+
+$fluid-font-size-ratio: 1 !default;
+
+@function pow($base, $exp) {
+	$r: 1;
+	$s: 0;
+	@if $exp < 0 {
+		$exp: $exp * -1;
+		$s: 1;
+	}
+	@while $exp > 0 {
+		@if $exp % 2 == 1 {
+			$r: $r * $base;
+		}
+		$exp: floor($exp * 0.5);
+		$base: $base * $base;
+	}
+	@return if($s != 0, 1 / $r, $r);
+}
+
+@function magic-size($size) {
+	$base: $size / ($size * 0 + 1);
+	@return calc(#{$size - pow($base/($fluid-font-size-ratio*9), 2)} + #{pow($base/($fluid-font-size-ratio*27), 2)}vw);
+}
+
+@function magic-size-viewport($size, $search) {
+	$base: $size / ($size * 0 + 1);
+	$vw: ($search - ($size - pow($base/($fluid-font-size-ratio*9), 2))) / pow($base/($fluid-font-size-ratio*27), 2);
+	@return $vw * 100;
+}
+
+@mixin fluid-font-size($size, $options: ()) {
+	$important: false;
+	@if map-has-key($options, 'important') {
+		$important: map-get($options, 'important')
+	}
+
+	$magic-size: magic-size($size);
+	font-size: $size if($important, !important, null);
+	font-size: $magic-size if($important, !important, null);
+	content: 'viewport-units-buggyfill; font-size: #{$magic-size}';
+
+	@if map-has-key($options, 'min') {
+		$min-size: map-get($options, 'min');
+		$min-vw: magic-size-viewport($size, $min-size);
+		@media (max-width: $min-vw) {
+			font-size: #{$min-size} if($important, !important, null);
+		}
+	}
+
+	@if map-has-key($options, 'max') {
+		$max-size: map-get($options, 'max');
+		$max-vw: magic-size-viewport($size, $max-size);
+		@media (min-width: $max-vw) {
+			font-size: #{$max-size} if($important, !important, null);
+		}
+	}
+}
